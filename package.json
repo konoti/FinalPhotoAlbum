@@ -1,0 +1,31 @@
+{
+    "name": "photoalbum",
+    "version": "1.0.0",
+    "description": "This is a MS photo album for Grad School",
+    "main": "load_album.js",
+    "private": true,
+    "engines": {
+    "node": "6.11.5"
+    },
+    "dependencies": {
+
+        "angular": "^1.7.2",
+        "async": "2.x",
+        "bcrypt": "0.x",
+        "body-parser": "1.x",
+        "bootstrap": "^4.1.3",
+        "bootstrapper": "^0.1.3",
+        "cookie-parser": "1.x",
+        "express": "4.x",
+        "express-flash": "0.x",
+        "express-session": "1.x",
+        "jquery": "^3.3.1",
+        "morgan": "1.x",
+        "multer": "1.x",
+        "mysql": "2.x",
+        "node-uuid": "1.x",
+        "passport": "0.3.x",
+        "passport-local": "1.x"
+    }
+
+}
