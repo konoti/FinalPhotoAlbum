@@ -1,0 +1,66 @@
+<title>PhotoAlbum Application</title>
+
+<div> <!-- Nav -->
+  <div>
+      <nav class="navbar navbar-inverse" role="navigation">
+           <ul class="nav navbar-nav">
+          <li class="active"><a href="home">Home<span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="register">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div align = "center">
+  {{#username}}
+    Hi, {{username}} <a href="/service/logout">Logout</a> |
+    <a href="/pages/admin/home">Admin</a>
+  {{/username}}
+  {{^username}}
+    <a href="/pages/login">Login</a> | 
+    <a href="/pages/register">Register</a> 
+  {{/username}}
+</div>
+
+
+<div algin="center" id="album_page">
+  {{#has_photos}}
+  <p align="center"> There are {{ has_photos }} photos in this album</p>
+  {{/has_photos}}
+  {{#photos}}
+  <div align="center" id="photos">
+      <div class="photo">
+        <div class='photo_holder'>
+          <img style="width: 250px; height: 250px"
+               src="{{ url }}" border="0"/></div>
+        <div class='photo_desc'><p>{{ desc }}</p></div>
+      </div>
+  </div> 
+  <!-- #photos -->
+  {{/photos}}
+
+  <div align = "center"; style="clear: left"></div>
+  {{^photos}}
+      <p> This album does't have any photos in it, sorry.<p>
+  {{/photos}}
+</div> <!-- #album_page -->
+
+<!-- Footer Start -->
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #008CBA;
+   color: #555555;
+   text-align: center;
+  }
+</style>
+
+  <div class="footer">
+    <footer>
+      <font color="#000000"> <b> @Copywrite KonotiProductions</font> </b>
+    </footer>
+  </div>
+<!-- Footer End -->

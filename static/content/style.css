@@ -1,0 +1,30 @@
+
+body {
+    font-family: Helvetica, Arial New, Arial;
+    font-size: 20pt;
+}
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+
+div#photos div.photo {
+    float: left;
+    width: 275px;
+    height: 325px;
+}
+
+.error {
+    color: #800;
+}
+
+/* left-aligned section inside the top navigation */
+.topnav-left {
+  float: left;
+}

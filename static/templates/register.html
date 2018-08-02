@@ -1,0 +1,139 @@
+<head>
+<meta charset="UTF-8">
+<title>PhotoAlbum Application</title>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <script src="script.js"></script>
+</head>
+
+
+<div class="topnav-left">
+<nav class="navbar navbar-inverse" role="navigation" style="padding-right:1330px;">
+       <ul class="nav navbar-nav">
+      <li class="active"><a href="home">Home<span class="sr-only">(current)</span></a></li>
+      <li class="active"><a href="register">Register</a></li>
+    </ul>
+</nav>
+</div>
+<div class=”jumbotron”>
+
+<div align="center">  <!-- Sets Center Alignment -->
+<!-- Form To Register -->
+
+  <form name="register" id="register">
+    <div id="error" class="error"></div>
+    <dl>
+      <dt>Email address:</dt>
+      <dd><input type="text" size="30" id="email_address" name="email_address"/></dd>
+      <dt>Username:</dt>
+      <dd><input type="text" size="30" id="display_name" name="display_name"/></dd>
+      <dt>Password:</dt>
+      <dd><input type="password" size="30" id="password" name="password"/></dd>
+      <dt>Password (confirm):</dt>
+      <dd><input type="password" size="30" id="password2" name="password2"/></dd>
+       <br> 
+      <button class="button" type="submit" value="Register"> Register </button>
+    </dl>
+  </form>
+
+  <style>
+.button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button:hover {opacity: 1}
+
+.div1 {
+    width: 250px;
+    border: 5px solid black;
+    padding: 25px;
+    margin: 25px;
+  }
+  </style>
+
+  <!-- Adding Button for Admin -->
+  <div class="div1" align="center-top">
+    <p> Are you an Admin? </p>
+    <form action="/pages/admin/home">
+      <input type= "submit" value="Admin" />
+    </form> 
+  </div>
+
+  <!-- Scripts -->
+  <script type="text/javascript">
+  $(document).ready(function () {
+      if (window.location.href.match(/(fail)/) != null) {
+          $("#error").html("Failure creating account.");
+      }
+  }); 
+  $("form#register").submit(function (e) { 
+    if (!$("input#email_address").val()
+        || !$("input#display_name").val()
+        || !$("input#password").val()
+        || !$("input#password2").val()) {
+        $("#error").html("You need to enter an email and password.");
+    } else if ($("input#password2").val() != $("input#password").val()) {
+        $("#error").html("Passwords don't match.");
+    } else {
+        var info = { email_address: $("input#email_address").val(),
+                     display_name: $("input#display_name").val(),
+                     password: $("input#password").val() };
+        $.ajax({
+            type: "PUT",
+            url: "/v1/users.json",
+            data: JSON.stringify(info),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                window.location = "/pages/admin/home";
+            },
+            error: function (data) {
+                try {
+                    var info = JSON.parse(data.responseText);
+                    if (info.error && info.message) {
+                        alert(info.error + ": " + info.message);
+                    }
+                } catch (e) { }
+                var ext = window.location.href.match(/(fail)/)
+                    ? "" : "?fail";
+                window.location = window.location + ext;
+                return false;
+            }
+        });
+    }
+    return false;
+  });
+  </script>
+
+<!-- Footer Start -->
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #008CBA;
+   color: #555555;
+   text-align: center;
+  }
+</style>
+
+  <div class="footer">
+    <footer>
+      <font color="#000000"> <b> @Copywrite KonotiProductions</font> </b>
+    </footer>
+  </div>
+<!-- Footer End -->
+</div>
+

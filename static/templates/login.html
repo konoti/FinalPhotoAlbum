@@ -1,0 +1,84 @@
+<meta charset="UTF-8">
+<title>PhotoAlbum Application</title>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <script src="script.js"></script>
+</head>
+
+
+<div class="topnav-left">
+<nav class="navbar navbar-inverse" role="navigation" style="padding-right:1330px;">
+       <ul class="nav navbar-nav">
+      <li class="active"><a href="home">Home<span class="sr-only">(current)</span></a></li>
+      <li class="active"><a href="register">Register</a></li>
+      <li class="active"><a href="login">Admins</a></li>
+    </ul>
+</nav>
+</div>
+
+<style>
+.button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button:hover {opacity: 1}
+</style>
+
+
+<!-- Login Data -->
+<div class=”jumbotron”>
+<div align="center">
+  <form name="login" id="login" method="post" action="/service/login">
+    <div id="error" class="error"></div>
+    <dl>
+      <dt>Username:</dt>
+      <dd><input type="text" size="30" id="username" name="username"/></dd>
+      <dt>Password:</dt>
+      <dd><input type="password" size="30" id="password" name="password"/></dd>
+            <br> </br>
+     <!-- OLD BUTTON  <dd><input type="submit" value="Login"/></dd> -->
+      <button class="button" type="submit" value="Login"> Login </button>
+    </dl>
+  </form>
+</div>
+
+<!-- Footer Start -->
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #008CBA;
+   color: #555555;
+   text-align: center;
+  }
+</style>
+
+  <div class="footer">
+    <footer>
+      <font color="#000000"> <b> @Copywrite KonotiProductions</font> </b>
+    </footer>
+  </div>
+<!-- Footer End -->
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+    if (window.location.href.match(/(fail)/) != null) {
+        $("#error").html("Invalid login credentials.");
+    }
+});
+
+</script>
